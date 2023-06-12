@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export default function zodWrapper(
-    input: Zod.ZodTypeAny,
-    output: Zod.ZodTypeAny,
-    fn: (request: NextRequest) => unknown
+export default function zodWrapper<
+    Input extends Zod.ZodTypeAny,
+    Output extends Zod.ZodTypeAny
+>(
+    input: Input,
+    output: Output,
+    fn: (request: NextRequest) => Zod.infer<Output>
 ) {
     return (request: NextRequest) => {
         if (!input.safeParse(request.body).success) {
