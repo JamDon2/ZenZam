@@ -6,9 +6,9 @@ export default function zodWrapper<
 >(
     input: Input,
     output: Output,
-    fn: (request: NextRequest) => Zod.infer<Output>
+    fn: (request: NextRequest) => Zod.infer<Output> | Promise<Zod.infer<Output>>
 ) {
-    return (request: NextRequest) => {
+    return async (request: NextRequest) => {
         if (!input.safeParse(request.body).success) {
             return NextResponse.json(
                 { error: "Input validation failed" },
@@ -16,7 +16,7 @@ export default function zodWrapper<
             );
         }
 
-        const result = fn(request);
+        const result = await fn(request);
 
         if (!output.safeParse(result).success) {
             return NextResponse.json(
