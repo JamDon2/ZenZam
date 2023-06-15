@@ -1,11 +1,11 @@
 "use client";
 import Input from "@mui/joy/Input";
 import styles from "styles/Home.module.css";
-import gradient from "random-gradient";
 import React from "react";
 import ChatNav from "components/ChatNav";
 import SideBar from "components/SideBar";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { RandomAvatar } from "react-random-avatars";
 
 const test = [
     {
@@ -79,7 +79,7 @@ export default function Home() {
                                         {message.sender}
                                     </div>
                                     <div
-                                        className={`rounded-xl p-2 ${
+                                        className={`rounded-full p-2 px-3.5 ${
                                             message.sender === "user"
                                                 ? "bg-white text-black ml-2"
                                                 : "bg-gray-800 text-white mr-2"
@@ -88,13 +88,15 @@ export default function Home() {
                                         {message.message}
                                         {message.sender !== "user" && (
                                             <div
-                                                className="w-7 h-7 rounded-full absolute -bottom-3 -right-2"
+                                                className="w-7 h-7 rounded-full absolute -bottom-1.5 -right-2 flex"
                                                 style={{
-                                                    background: gradient(
-                                                        message.sender
-                                                    ),
+                                                    imageRendering: "pixelated",
                                                 }}
-                                            ></div>
+                                            >
+                                                <RandomAvatar
+                                                    name={message.sender}
+                                                />
+                                            </div>
                                         )}
                                     </div>
                                 </div>
