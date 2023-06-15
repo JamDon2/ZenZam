@@ -73,17 +73,18 @@ export default function Home() {
                             >
                                 <div className="flex flex-col relative">
                                     <div
-                                        className={`text-xs text-slate-400 px-2 ${
-                                            message.sender === "user" &&
-                                            "hidden"
-                                        }`}
+                                        className={
+                                            "text-xs text-slate-400 px-2"
+                                        }
                                     >
-                                        {message.sender}
+                                        {message.sender !== "user"
+                                            ? message.sender
+                                            : "You"}
                                     </div>
                                     <div
                                         className={`rounded-full p-2 px-3.5 ${
                                             message.sender === "user"
-                                                ? "bg-white text-black ml-2"
+                                                ? "bg-white text-black"
                                                 : "bg-gray-800 text-white mr-2"
                                         }`}
                                     >
