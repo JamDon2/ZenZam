@@ -31,13 +31,15 @@ export default function Home() {
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
-            const newMessage = {
-                id: messages.length + 1,
-                message: inputValue,
-                sender: "user",
-            };
-            setMessages([...messages, newMessage]);
-            setInputValue("");
+            if (inputValue.length > 0) {
+                const newMessage = {
+                    id: messages.length + 1,
+                    message: inputValue,
+                    sender: "user",
+                };
+                setMessages([...messages, newMessage]);
+                setInputValue("");
+            }
         }
     };
     return (
