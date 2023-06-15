@@ -1,6 +1,6 @@
 import React from "react";
 
-function SideBar() {
+function Sidebar() {
     return (
         <div className="flex-col flex gap-4 w-fit p-2.5 bg-gray-800 min-w-[240px]">
             <div className="bg-gray-600 rounded-lg p-2.5">
@@ -17,4 +17,4 @@ function SideBar() {
     );
 }
 
-export default SideBar;
+export default Sidebar;

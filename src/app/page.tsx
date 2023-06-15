@@ -3,7 +3,7 @@ import Input from "@mui/joy/Input";
 import styles from "styles/Home.module.css";
 import React from "react";
 import ChatNav from "components/ChatNav";
-import SideBar from "components/SideBar";
+import Sidebar from "components/Sidebar";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { RandomAvatar } from "react-random-avatars";
 
@@ -44,7 +44,7 @@ export default function Home() {
         <div className={styles.container}>
             <ChatNav />
             <div className="h-[92vh] flex">
-                <SideBar />
+                <Sidebar />
                 <div className="chatWindow w-full flex-col">
                     <div className="bg-slate-700 p-2.5 h-[9%] flex flex-col">
                         <div className="flex gap-1 font-bold">
