@@ -4,8 +4,8 @@ import { PlusCircle } from "lucide-react";
 import styles from "styles/Home.module.css";
 import gradient from "random-gradient";
 import React from "react";
-import Chatnav from "components/chat-nav";
-import SideBar from "components/side-bar";
+import ChatNav from "components/ChatNav";
+import SideBar from "components/SideBar";
 
 const test = [
     {
@@ -42,7 +42,7 @@ export default function Home() {
     };
     return (
         <div className={styles.container}>
-            <Chatnav />
+            <ChatNav />
             <div className="h-[92vh] flex">
                 <SideBar />
                 <div className="chatWindow w-full flex-col">

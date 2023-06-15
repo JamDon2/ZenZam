@@ -1,6 +1,6 @@
 import React from "react";
 
-const Chatnav = () => {
+function ChatNav() {
     return (
         <div>
             <div className="h-[8vh] px-5 flex items-center gap-4 bg-gray-900">
@@ -13,6 +13,6 @@ const Chatnav = () => {
             </div>
         </div>
     );
-};
+}
 
-export default Chatnav;
+export default ChatNav;
