@@ -48,12 +48,12 @@ export default function Home() {
             <div className="h-[92vh] flex">
                 <Sidebar />
                 <div className="chatWindow w-full flex-col">
-                    <div className="bg-slate-700 p-2.5 h-[9%] flex flex-col">
+                    <div className="bg-gray-900 p-2.5 h-[9%] flex flex-col">
                         <div className="flex gap-1 font-bold">
-                            <div className="rounded-xl text-white px-2 py-0.5 bg-blue-800 bg-opacity-60 w-fit h-fit">
+                            <div className="rounded-xl text-white px-2 py-0.5 bg-blue-900 bg-opacity-60 w-fit h-fit">
                                 #cybersecurity
                             </div>
-                            <div className="rounded-xl text-white px-2 py-0.5 bg-blue-800 bg-opacity-60 w-fit h-fit">
+                            <div className="rounded-xl text-white px-2 py-0.5 bg-blue-900 bg-opacity-60 w-fit h-fit">
                                 #baking
                             </div>
                         </div>
@@ -61,7 +61,7 @@ export default function Home() {
                             3 members
                         </div>
                     </div>
-                    <div className="h-[81%] bg-zinc-900 px-10 py-4">
+                    <div className="h-[81%] bg-zinc-950 px-10 py-4 overflow-scroll">
                         {messages.map((message, index) => (
                             <div
                                 key={index}
@@ -107,10 +107,10 @@ export default function Home() {
                         ))}
                     </div>
 
-                    <div className="h-[10%] w-full bg-gray-900 flex items-center p-1.5 gap-1.5">
+                    <div className="h-[10%] w-full bg-zinc-900 flex items-center p-1.5 gap-1.5">
                         <AddCircleIcon
                             fontSize={"large"}
-                            className="text-white"
+                            className="text-zinc-100 hover:text-zinc-400"
                         />
                         <Input
                             placeholder="Type a message"
