@@ -48,10 +48,10 @@ export default function Home() {
                 <div className="chatWindow w-full flex-col">
                     <div className="bg-slate-700 p-2.5 h-[9%] flex flex-col">
                         <div className="flex gap-1 font-bold">
-                            <div className="rounded-xl px-2 py-0.5 bg-blue-800 bg-opacity-60 w-fit h-fit">
+                            <div className="rounded-xl text-white px-2 py-0.5 bg-blue-800 bg-opacity-60 w-fit h-fit">
                                 #cybersecurity
                             </div>
-                            <div className="rounded-xl px-2 py-0.5 bg-blue-800 bg-opacity-60 w-fit h-fit">
+                            <div className="rounded-xl text-white px-2 py-0.5 bg-blue-800 bg-opacity-60 w-fit h-fit">
                                 #baking
                             </div>
                         </div>
@@ -59,7 +59,7 @@ export default function Home() {
                             3 members
                         </div>
                     </div>
-                    <div className="h-[81%] px-10 py-4">
+                    <div className="h-[81%] bg-zinc-900 px-10 py-4">
                         {messages.map((message, index) => (
                             <div
                                 key={index}
@@ -82,7 +82,7 @@ export default function Home() {
                                         className={`rounded-xl p-2 ${
                                             message.sender === "user"
                                                 ? "bg-white text-black ml-2"
-                                                : "bg-gray-800 mr-2"
+                                                : "bg-gray-800 text-white mr-2"
                                         }`}
                                     >
                                         {message.message}
