@@ -71,7 +71,7 @@ export default function Home() {
                             >
                                 <div className="flex flex-col relative">
                                     <div
-                                        className={`text-xs px-2 ${
+                                        className={`text-xs text-slate-400 px-2 ${
                                             message.sender === "user" &&
                                             "hidden"
                                         }`}
