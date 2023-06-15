@@ -109,13 +109,18 @@ export default function Home() {
                         />
                         <Input
                             placeholder="Type a message"
-                            className="w-full text-white hover:text-white bg-gray-800"
+                            className="w-full text-white hover:text-white bg-gray-800 focus:outline-none"
                             disabled={false}
                             size="md"
                             variant="plain"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
+                            sx={{
+                                "& .MuiInput-input": {
+                                    outline: "none",
+                                },
+                            }}
                         />
                     </div>
                 </div>
