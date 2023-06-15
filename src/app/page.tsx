@@ -109,7 +109,7 @@ export default function Home() {
                         />
                         <Input
                             placeholder="Type a message"
-                            className="w-full text-white bg-gray-800"
+                            className="w-full text-white hover:text-white bg-gray-800"
                             disabled={false}
                             size="md"
                             variant="plain"
