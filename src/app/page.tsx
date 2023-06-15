@@ -1,11 +1,11 @@
 "use client";
 import Input from "@mui/joy/Input";
-import { PlusCircle } from "lucide-react";
 import styles from "styles/Home.module.css";
 import gradient from "random-gradient";
 import React from "react";
 import ChatNav from "components/ChatNav";
 import SideBar from "components/SideBar";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const test = [
     {
@@ -103,7 +103,10 @@ export default function Home() {
                     </div>
 
                     <div className="h-[10%] w-full bg-gray-900 flex items-center p-1.5 gap-1.5">
-                        <PlusCircle size={30} />
+                        <AddCircleIcon
+                            fontSize={"large"}
+                            className="text-white"
+                        />
                         <Input
                             placeholder="Type a message"
                             className="w-full text-white bg-gray-800"
