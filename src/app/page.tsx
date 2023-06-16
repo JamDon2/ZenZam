@@ -82,7 +82,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div
-                        className="h-[81%] bg-zinc-950 px-10 py-4 overflow-scroll"
+                        className="h-[81%] bg-zinc-950 px-10 py-4 overflow-auto"
                         ref={messageContainer}
                     >
                         {messages.map((message, index) => (
