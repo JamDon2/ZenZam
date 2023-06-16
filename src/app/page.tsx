@@ -28,6 +28,7 @@ const test = [
 export default function Home() {
     const [messages, setMessages] = React.useState(test);
     const [inputValue, setInputValue] = React.useState("");
+    const messageContainer = React.useRef<HTMLDivElement | null>(null);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
@@ -42,6 +43,25 @@ export default function Home() {
             }
         }
     };
+
+    React.useEffect(() => {
+        if (messageContainer.current) {
+            const thresholdPixels = 200;
+
+            const { scrollHeight, scrollTop, offsetHeight } =
+                messageContainer.current;
+
+            const nearBottom =
+                scrollHeight - (scrollTop + offsetHeight) <= thresholdPixels;
+
+            if (nearBottom) {
+                messageContainer.current.lastElementChild?.scrollIntoView({
+                    behavior: "smooth",
+                });
+            }
+        }
+    }, [messages]);
+
     return (
         <div className={styles.container}>
             <ChatNav />
@@ -61,7 +81,10 @@ export default function Home() {
                             3 members
                         </div>
                     </div>
-                    <div className="h-[81%] bg-zinc-950 px-10 py-4 overflow-scroll">
+                    <div
+                        className="h-[81%] bg-zinc-950 px-10 py-4 overflow-scroll"
+                        ref={messageContainer}
+                    >
                         {messages.map((message, index) => (
                             <div
                                 key={index}
