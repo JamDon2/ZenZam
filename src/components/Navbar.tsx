@@ -17,18 +17,20 @@ function Navbar({
 
                 <div className="rounded-full bg-gray-500 w-[0.15rem] h-[40%]"></div>
 
-                {chatIds.map((id, i) => {
-                    return (
-                        <Link href={`/chats/${id}`} key={i}>
-                            <div
-                                className={`rounded-full transition-all bg-yellow-500 w-10 hover:scale-110 aspect-square ${
-                                    selected === i &&
-                                    "outline outline-offset-2 outline-blue-500"
-                                }`}
-                            ></div>
-                        </Link>
-                    );
-                })}
+                <div className="flex px-2 gap-4 overflow-auto h-full items-center grow">
+                    {chatIds.map((id, i) => {
+                        return (
+                            <Link href={`/chats/${id}`} key={i}>
+                                <div
+                                    className={`rounded-full transition-all bg-yellow-500 w-10 hover:scale-110 aspect-square ${
+                                        selected === i &&
+                                        "outline outline-offset-2 outline-blue-500"
+                                    }`}
+                                ></div>
+                            </Link>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
