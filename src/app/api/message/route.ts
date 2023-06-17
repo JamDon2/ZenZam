@@ -11,7 +11,7 @@ const messageSchema = z.strictObject({
     content: z.string(),
 });
 
-const GETValidator = z.array(messageSchema);
+const GETValidator = messageSchema.array();
 
 export type GET = z.infer<typeof GETValidator>;
 
