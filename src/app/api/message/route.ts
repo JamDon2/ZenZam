@@ -11,11 +11,15 @@ const messageSchema = z.strictObject({
     content: z.string(),
 });
 
+const GETValidator = z.array(messageSchema);
+
+export type GET = z.infer<typeof GETValidator>;
+
 export const GET = withDatabase(
     zodWrapper(
         z.null(),
         z.object({ chatId: z.string() }).strict(),
-        z.array(messageSchema),
+        GETValidator,
         async (_body, searchParams) => {
             return await Message.find({
                 chatId: searchParams.chatId,
@@ -26,11 +30,15 @@ export const GET = withDatabase(
     )
 );
 
+const POSTValidator = z.string();
+
+export type POST = z.infer<typeof GETValidator>;
+
 export const POST = withDatabase(
     zodWrapper(
         messageSchema,
         z.object({}).strict(),
-        z.string(),
+        POSTValidator,
         async (body) => {
             await Message.create(body);
 
