@@ -1,6 +1,6 @@
 import styles from "styles/Home.module.css";
 import React from "react";
-import ChatNav from "components/ChatNav";
+import Navbar from "components/Navbar";
 
 const chatIds = ["1000", "1001", "1002", "1003", "1004"];
 
@@ -13,7 +13,7 @@ export default function Home({
 }) {
     return (
         <div className={styles.container}>
-            <ChatNav
+            <Navbar
                 chatIds={["1000", "1001", "1002", "1003", "1004"]}
                 selected={chatIds.indexOf(params.id)}
             />

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-function ChatNav({
+function Navbar({
     chatIds,
     selected,
 }: {
@@ -34,4 +34,4 @@ function ChatNav({
     );
 }
 
-export default ChatNav;
+export default Navbar;
