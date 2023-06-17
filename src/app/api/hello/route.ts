@@ -7,6 +7,7 @@ import User from "models/User";
 
 export const GET = zodWrapper(
     z.null(),
+    z.object({}).strict(),
     z.object({ name: z.string(), count: z.number() }),
     withDatabase(async () => {
         return { name: "John Doe", count: await User.countDocuments() };

@@ -1,15 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export default function zodWrapper<
-    Input extends Zod.ZodTypeAny,
-    Output extends Zod.ZodTypeAny
+    Body extends Zod.ZodTypeAny,
+    SearchParams extends Zod.ZodTypeAny,
+    Response extends Zod.ZodTypeAny
 >(
-    input: Input,
-    output: Output,
-    fn: (request: NextRequest) => Zod.infer<Output> | Promise<Zod.infer<Output>>
+    body: Body,
+    searchParams: SearchParams,
+    response: Response,
+    fn: (
+        request: NextRequest
+    ) => Zod.infer<Response> | Promise<Zod.infer<Response>>
 ) {
     return async (request: NextRequest) => {
-        if (!input.safeParse(request.body).success) {
+        if (!body.safeParse(request.body).success) {
+            return NextResponse.json(
+                { error: "Input validation failed" },
+                { status: 400 }
+            );
+        }
+
+        if (
+            !searchParams.safeParse(
+                Object.fromEntries(new URL(request.url).searchParams.entries())
+            ).success
+        ) {
             return NextResponse.json(
                 { error: "Input validation failed" },
                 { status: 400 }
@@ -18,13 +33,15 @@ export default function zodWrapper<
 
         const result = await fn(request);
 
-        if (!output.safeParse(result).success) {
+        const parsedResponse = response.safeParse(result);
+
+        if (!parsedResponse.success) {
             return NextResponse.json(
                 { error: "Output validation failed" },
                 { status: 500 }
             );
         }
 
-        return NextResponse.json(result);
+        return NextResponse.json(parsedResponse.data);
     };
 }
