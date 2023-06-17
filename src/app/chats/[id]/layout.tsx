@@ -1,4 +1,3 @@
-import styles from "styles/Home.module.css";
 import React from "react";
 import Navbar from "components/Navbar";
 
@@ -14,10 +13,10 @@ export default function Home({
     params: { id: string };
 }) {
     return (
-        <div className={styles.container}>
+        <>
             <Navbar chatIds={chatIds} selected={chatIds.indexOf(params.id)} />
 
             {children}
-        </div>
+        </>
     );
 }
