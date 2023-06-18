@@ -44,7 +44,7 @@ export const GET = withDatabase(
 
 const POSTValidator = z.string();
 
-export type POST = z.infer<typeof GETValidator>;
+export type POST = z.infer<typeof POSTValidator>;
 
 export const POST = withDatabase(
     zodWrapper(

@@ -5,7 +5,7 @@ import { withDatabase } from "clients/mongoose";
 
 import Message from "models/Message";
 
-const messageSchema = z.strictObject({
+export const messageSchema = z.strictObject({
     chatId: z.string(),
     fromId: z.string(),
     content: z.string(),
@@ -32,7 +32,7 @@ export const GET = withDatabase(
 
 const POSTValidator = z.string();
 
-export type POST = z.infer<typeof GETValidator>;
+export type POST = z.infer<typeof POSTValidator>;
 
 export const POST = withDatabase(
     zodWrapper(
