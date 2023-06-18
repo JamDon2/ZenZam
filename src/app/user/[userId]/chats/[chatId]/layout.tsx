@@ -25,13 +25,22 @@ export default async function ChatLayout({
     params: { chatId: string; userId: string };
 }) {
     const user = (await (
-        await fetch(`${process.env.BASEURL}/api/user?userId=${params.userId}`, {
-            cache: "no-store",
-        })
+        await fetch(
+            `${process.env.VERCEL_URL || process.env.BASEURL}/api/user?userId=${
+                params.userId
+            }`,
+            {
+                cache: "no-store",
+            }
+        )
     ).json()) as userResponse;
 
     const group = (await (
-        await fetch(`${process.env.BASEURL}/api/group?groupId=${params.chatId}`)
+        await fetch(
+            `${
+                process.env.VERCEL_URL || process.env.BASEURL
+            }/api/group?groupId=${params.chatId}`
+        )
     ).json()) as groupResponse;
 
     if (!user) {
