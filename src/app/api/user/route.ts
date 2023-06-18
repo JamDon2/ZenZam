@@ -29,7 +29,7 @@ export const GET = withDatabase(
                 _id: searchParams.userId,
             })
                 .select("-__v")
-                .populate("groups");
+                .populate("groups", "-__v");
 
             if (!doc) return null;
 
