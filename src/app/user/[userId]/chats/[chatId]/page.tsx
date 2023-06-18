@@ -8,17 +8,18 @@ import useSWR from "swr";
 import fetcher from "util/fetcher";
 import { GET } from "app/api/message/route";
 
-export default function Home({ params }: { params: { id: string } }) {
+export default function Home({
+    params,
+}: {
+    params: { chatId: string; userId: string };
+}) {
     const { data, mutate } = useSWR<GET>(
-        `/api/message?chatId=${params.id}`,
+        `/api/message?chatId=${params.chatId}`,
         fetcher,
         {
             refreshInterval: 5000,
         }
     );
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [userId, setUserId] = React.useState("1000");
 
     const [inputValue, setInputValue] = React.useState("");
     const messageContainer = React.useRef<HTMLDivElement | null>(null);
@@ -27,8 +28,8 @@ export default function Home({ params }: { params: { id: string } }) {
         if (e.key === "Enter") {
             if (inputValue.length > 0) {
                 const newMessage: GET[0] = {
-                    chatId: params.id,
-                    fromId: userId,
+                    chatId: params.chatId,
+                    fromId: params.userId,
                     content: inputValue,
                 };
 
@@ -94,7 +95,7 @@ export default function Home({ params }: { params: { id: string } }) {
                             <div
                                 key={index}
                                 className={`flex ${
-                                    message.fromId === userId
+                                    message.fromId === params.userId
                                         ? "justify-end"
                                         : "justify-start"
                                 } mb-2`}
@@ -105,19 +106,19 @@ export default function Home({ params }: { params: { id: string } }) {
                                             "text-xs text-slate-400 px-2"
                                         }
                                     >
-                                        {message.fromId !== userId
+                                        {message.fromId !== params.userId
                                             ? message.fromId
                                             : "You"}
                                     </div>
                                     <div
                                         className={`rounded-full p-2 px-3.5 ${
-                                            message.fromId === userId
+                                            message.fromId === params.userId
                                                 ? "bg-white text-black"
                                                 : "bg-gray-800 text-white mr-2"
                                         }`}
                                     >
                                         {message.content}
-                                        {message.fromId === userId && (
+                                        {message.fromId === params.userId && (
                                             <div
                                                 className="w-7 h-7 rounded-full absolute -bottom-1.5 -right-4 flex"
                                                 style={{
