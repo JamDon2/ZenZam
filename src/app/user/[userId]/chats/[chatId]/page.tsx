@@ -118,9 +118,9 @@ export default function Home({
                                         }`}
                                     >
                                         {message.content}
-                                        {message.fromId === params.userId && (
+                                        {message.fromId !== params.userId && (
                                             <div
-                                                className="w-7 h-7 rounded-full absolute -bottom-1.5 -right-4 flex"
+                                                className="w-7 h-7 rounded-full absolute -bottom-1.5 -right-2 flex"
                                                 style={{
                                                     imageRendering: "pixelated",
                                                 }}
