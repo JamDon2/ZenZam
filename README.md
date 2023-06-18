@@ -1,34 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ZenZam
 
-## Getting Started
+## Next.js (Frontend and main backend)
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+-   Node.js and NPM installed: you can get them [here](https://nodejs.org/en), the LTS version should be good.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-   The repository cloned or downloaded to the runner computer
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Setting up
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+-   Open a terminal in the repository's folder
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+-   Install all dependencies via `npm install`
 
-## Learn More
+-   Make a copy of the `.env.example` file with the name `.env`
 
-To learn more about Next.js, take a look at the following resources:
+-   If you already have a MongoDB server running just add it's URI to the `MONGODB_URI` key, and skip to the [Running section](#running)
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   There are many ways to run a MongoDB server, here are some options:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    -   Provision one on [MongoDB Atlas](https://www.mongodb.com/atlas)
 
-## Deploy on Vercel
+    -   [Run one in Docker](https://hub.docker.com/_/mongo)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    -   [Run it on your local machine](https://www.mongodb.com/try/download/community)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Your connection string should look something like this: `mongodb+srv://<user>:<password>@<mongodb-cluster>.mongodb.net/?retryWrites=true&w=majority`, this is what you need to put after `MONGODB_URI=` in the .env file
+
+### Running
+
+-   In your terminal start the development server with the following command: `npm run dev`
+
+-   Open your browser, and visit the following URL: http://localhost:3000, or the URL that it sends in the log
+
+## Python (grouping backend)
+
+### Prerequisites
+
+-   [Python](https://www.python.org/downloads/) >= 3.10
+
+### Setting up
+
+-   Open a seperate terminal in the `grouping` folder
+
+-   Install the required modules by running `pip install -r requirements.txt`
+
+### Running
+
+-   Type `python app.py` in your terminal
+
+## Usage
+
+If you navigate to http://localhost:3000 (or your own URL from the log) you will be redirected to the onboarding page. There you can create a user by entering your interests, and you'll be taken to the user dashboard. Here you can change your interests, and request a new group.
+
+The grouping algorithm can be triggered manually by navigating to http://localhost:3000/api/group/execute, however keep in mind, that at least 3 users have to be looking for a group for the grouping functionality to be enabled.
+
+Once you are assigned a group, you can see your shared interests in the form of badges (like **#Cybersecurity**), and chat with other group members.
+
+Your groups are the circles at the top of your screen, with the leftmost one bringing you back to the dashboard.

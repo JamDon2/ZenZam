@@ -14,6 +14,7 @@ export default function RootLayout({
 }) {
     return (
         <CssBaseline>
+            <title>ZenZam</title>
             <html lang="en">
                 <body>{children}</body>
             </html>
