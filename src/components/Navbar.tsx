@@ -2,9 +2,11 @@ import Link from "next/link";
 import React from "react";
 
 function Navbar({
+    basePath,
     chatIds,
     selected,
 }: {
+    basePath: string;
     chatIds: string[];
     selected: number;
 }) {
@@ -20,7 +22,7 @@ function Navbar({
                 <div className="flex px-2 gap-4 overflow-auto h-full items-center grow">
                     {chatIds.map((id, i) => {
                         return (
-                            <Link href={`/chats/${id}`} key={i}>
+                            <Link href={`${basePath}/chats/${id}`} key={i}>
                                 <div
                                     className={`rounded-full transition-all bg-yellow-500 w-10 hover:scale-110 aspect-square ${
                                         selected === i &&
