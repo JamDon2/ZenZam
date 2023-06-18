@@ -7,6 +7,7 @@ import InterestSelector from "components/InterestSelector";
 
 export default function OnboardingPage() {
     const [interests, setInterests] = React.useState<string[]>([]);
+    const [buttonClicked, setButtonClicked] = React.useState(false);
 
     const router = useRouter();
 
@@ -24,15 +25,22 @@ export default function OnboardingPage() {
 
                         <Button
                             variant="solid"
+                            disabled={buttonClicked}
                             onClick={async () => {
-                                const response = (await (
-                                    await fetch("/api/user", {
-                                        method: "POST",
-                                        body: JSON.stringify(interests),
-                                    })
-                                ).json()) as POST;
+                                setButtonClicked(true);
 
-                                router.push(`/user/${response}/chats`);
+                                try {
+                                    const response = (await (
+                                        await fetch("/api/user", {
+                                            method: "POST",
+                                            body: JSON.stringify(interests),
+                                        })
+                                    ).json()) as POST;
+
+                                    router.push(`/user/${response}/chats`);
+                                } catch {
+                                    setButtonClicked(false);
+                                }
                             }}
                         >
                             Create user
