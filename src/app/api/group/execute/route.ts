@@ -55,7 +55,7 @@ export const GET = withDatabase(
             await Group.create({
                 _id: v4(),
                 members: group.map((elem) => userLookup[elem].id),
-                interests: commonInterests,
+                interests: [...new Set(commonInterests)],
             });
         }
 
