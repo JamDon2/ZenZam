@@ -184,7 +184,7 @@ const testInterests = [
     "Watercolor painting",
 ];
 
-export default function Page() {
+export default function OnboardingPage() {
     const [interests, setInterests] = React.useState<string[]>([]);
 
     return (

@@ -8,7 +8,7 @@ import useSWR from "swr";
 import fetcher from "util/fetcher";
 import { GET } from "app/api/message/route";
 
-export default function Home({
+export default function ChatPage({
     params,
 }: {
     params: { chatId: string; userId: string };

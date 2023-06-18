@@ -6,7 +6,7 @@ const chatIds = Array(10)
     .fill(null)
     .map((_, i) => String(1000 + i));
 
-export default async function Home({
+export default async function ChatLayout({
     children,
     params,
 }: {
