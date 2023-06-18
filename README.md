@@ -2,6 +2,8 @@
 
 ## Next.js (Frontend and main backend)
 
+Hosted version: https://zen-zam.vercel.app/
+
 ### Prerequisites
 
 -   Node.js and NPM installed: you can get them [here](https://nodejs.org/en), the LTS version should be good.
