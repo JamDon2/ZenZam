@@ -28,7 +28,7 @@ function InterestSelector({
     }, [autocompleteOpen]);
 
     React.useEffect(() => {
-        onChange && onChange(interests);
+        if (onChange && !value) onChange(interests);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [interests]);
@@ -48,7 +48,11 @@ function InterestSelector({
                 },
             }}
             value={value || interests}
-            onChange={(event, value) => setInterests(value)}
+            onChange={
+                !value
+                    ? (_, value) => setInterests(value)
+                    : (_, value) => onChange && onChange(value)
+            }
             renderTags={(tags, getTagProps) =>
                 tags.map((item, index) => (
                     <>
