@@ -13,9 +13,9 @@ function Navbar({
     return (
         <div>
             <div className="h-[8vh] px-5 flex items-center gap-4 bg-gray-800 drop-shadow-md">
-                <div className="rounded-full bg-[#FAFF13] w-10 aspect-square flex justify-center items-center">
-                    <span className="">Z</span>
-                </div>
+                <Link href={`${basePath}/chats`}>
+                    <div className="rounded-full bg-[#FAFF13] w-10 aspect-square flex justify-center items-center  transition-all hover:scale-110"></div>
+                </Link>
 
                 <div className="rounded-full bg-gray-500 w-[0.15rem] h-[40%]"></div>
 
