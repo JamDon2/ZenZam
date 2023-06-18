@@ -4,12 +4,7 @@ import zodWrapper from "util/zodWrapper";
 import { withDatabase } from "clients/mongoose";
 
 import Message from "models/Message";
-
-export const messageSchema = z.strictObject({
-    chatId: z.string(),
-    fromId: z.string(),
-    content: z.string(),
-});
+import { messageSchema } from "./schema";
 
 const GETValidator = messageSchema.array();
 

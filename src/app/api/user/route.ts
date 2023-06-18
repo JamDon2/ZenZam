@@ -5,15 +5,7 @@ import zodWrapper from "util/zodWrapper";
 import { withDatabase } from "clients/mongoose";
 
 import User from "models/User";
-
-import { groupSchema } from "../group/route";
-
-export const userSchema = z.strictObject({
-    _id: z.string(),
-    interests: z.string().array(),
-    groups: groupSchema.array(),
-    lookingForGroup: z.boolean(),
-});
+import { userSchema } from "./schema";
 
 const GETValidator = userSchema.nullable();
 

@@ -4,12 +4,7 @@ import zodWrapper from "util/zodWrapper";
 import { withDatabase } from "clients/mongoose";
 
 import Group from "models/Group";
-
-export const groupSchema = z.strictObject({
-    _id: z.string(),
-    interests: z.string().array(),
-    members: z.string().array(),
-});
+import { groupSchema } from "./schema";
 
 const GETValidator = groupSchema.nullable();
 
