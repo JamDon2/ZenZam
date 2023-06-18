@@ -5,6 +5,7 @@ import Navbar from "components/Navbar";
 import { GET } from "app/api/user/route";
 import { Button, Divider } from "@mui/joy";
 import useSWR from "swr";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 
 import fetcher from "util/fetcher";
 import InterestSelector from "components/InterestSelector";
@@ -54,10 +55,20 @@ export default function ChatsPage({ params }: { params: { userId: string } }) {
                 }
                 selected={-1}
             />
-
             <div className="bg-zinc-950 h-[92vh] flex items-center justify-center text-white">
                 <div className="bg-gray-900 rounded-lg w-full h-full max-w-[450px] max-h-[550px] p-2.5 flex flex-col items-center justify-between gap-2">
                     <div className="bg-gray-800 h-full w-full rounded-lg p-2.5 flex flex-col gap-4 justify-center">
+                        <div className="text-4xl font-semibold w-full text-center mb-3">
+                            Chat Dashboard
+                        </div>
+                        <div className="flex text-xs text-black gap-2 items-center bg-yellow-200 px-2 text-center py-1 rounded-lg mb-20 ">
+                            <WarningAmberIcon />
+                            <div>
+                                You might have to wait some time for enough
+                                users to accumulate for a new grouping. The
+                                maximum waiting time is 24 hours.
+                            </div>
+                        </div>
                         <InterestSelector
                             onChange={(value) => setInterests(value)}
                             value={interests}
