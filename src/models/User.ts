@@ -2,12 +2,22 @@ import mongoose, { model, Schema } from "mongoose";
 import type { Model } from "mongoose";
 
 export interface IUser {
-    email: string;
+    _id: string;
+    interests: string[];
+    groups: string[];
 }
 
 const UserSchema = new Schema<IUser>({
-    email: {
+    _id: {
         type: String,
+        required: true,
+    },
+    interests: {
+        type: [String],
+        required: true,
+    },
+    groups: {
+        type: [String],
         required: true,
     },
 });
