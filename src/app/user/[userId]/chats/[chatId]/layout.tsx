@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "components/Navbar";
+import { GET } from "app/api/user/route";
 
 const chatIds = Array(10)
     .fill(null)
@@ -12,9 +13,11 @@ export default async function Home({
     children: React.ReactNode;
     params: { chatId: string; userId: string };
 }) {
-    const result = await (
-        await fetch(`${process.env.BASEURL}/api/user?userId=${params.userId}`)
-    ).json();
+    const result = (await (
+        await fetch(`${process.env.BASEURL}/api/user?userId=${params.userId}`, {
+            cache: "no-store",
+        })
+    ).json()) as GET;
 
     return (
         <>
@@ -22,7 +25,7 @@ export default async function Home({
                 <>
                     <Navbar
                         basePath={`/user/${params.userId}`}
-                        chatIds={chatIds}
+                        chatIds={result.groups}
                         selected={chatIds.indexOf(params.chatId)}
                     />
 
