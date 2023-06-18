@@ -1,10 +1,13 @@
 import mongoose, { model, Schema } from "mongoose";
 import type { Model } from "mongoose";
 
+import "models/Group";
+import { IGroup } from "models/Group";
+
 export interface IUser {
     _id: string;
     interests: string[];
-    groups: string[];
+    groups: IGroup[];
 }
 
 const UserSchema = new Schema<IUser>({
@@ -16,10 +19,13 @@ const UserSchema = new Schema<IUser>({
         type: [String],
         required: true,
     },
-    groups: {
-        type: [String],
-        required: true,
-    },
+});
+
+UserSchema.virtual("groups", {
+    ref: "Group",
+    localField: "_id",
+    foreignField: "members",
+    justOne: false,
 });
 
 const User: Model<IUser> = mongoose.models.User || model("User", UserSchema);

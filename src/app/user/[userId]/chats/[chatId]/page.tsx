@@ -6,14 +6,15 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { RandomAvatar } from "react-random-avatars";
 import useSWR from "swr";
 import fetcher from "util/fetcher";
-import { GET } from "app/api/message/route";
+import { GET as messageResponse } from "app/api/message/route";
+import { GET as groupResponse } from "app/api/group/route";
 
 export default function ChatPage({
     params,
 }: {
     params: { chatId: string; userId: string };
 }) {
-    const { data, mutate } = useSWR<GET>(
+    const { data, mutate } = useSWR<messageResponse>(
         `/api/message?chatId=${params.chatId}`,
         fetcher,
         {
@@ -21,13 +22,18 @@ export default function ChatPage({
         }
     );
 
+    const { data: groupData, isLoading: isGroupLoading } =
+        useSWR<groupResponse>(`/api/group?groupId=${params.chatId}`, fetcher, {
+            refreshInterval: 5000,
+        });
+
     const [inputValue, setInputValue] = React.useState("");
     const messageContainer = React.useRef<HTMLDivElement | null>(null);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             if (inputValue.length > 0) {
-                const newMessage: GET[0] = {
+                const newMessage: messageResponse[0] = {
                     chatId: params.chatId,
                     fromId: params.userId,
                     content: inputValue,
@@ -69,22 +75,31 @@ export default function ChatPage({
         }
     }, [data]);
 
+    if (!groupData && !isGroupLoading) return <h1>Error</h1>;
+
     return (
         <div className="h-[92vh] flex">
             <Sidebar />
             <div className="chatWindow w-full flex-col">
                 <div className="bg-gray-900 p-2.5 h-[9%] flex flex-col">
-                    <div className="flex gap-1 font-bold">
-                        <div className="rounded-xl text-white px-2 py-0.5 bg-blue-900 bg-opacity-60 w-fit h-fit">
-                            #cybersecurity
-                        </div>
-                        <div className="rounded-xl text-white px-2 py-0.5 bg-blue-900 bg-opacity-60 w-fit h-fit">
-                            #baking
-                        </div>
-                    </div>
-                    <div className="px-1.5 text-gray-400 text-sm">
-                        3 members
-                    </div>
+                    {groupData && (
+                        <>
+                            <div className="flex gap-1 font-bold">
+                                {groupData.interests.map((element, index) => (
+                                    <div
+                                        className="rounded-xl text-white px-2 py-0.5 bg-blue-900 bg-opacity-60 w-fit h-fit"
+                                        key={index}
+                                    >
+                                        #{element}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="px-1.5 text-gray-400 text-sm">
+                                {groupData.members.length} member
+                                {groupData.members.length !== 1 && "s"}
+                            </div>
+                        </>
+                    )}
                 </div>
                 <div
                     className="h-[81%] bg-zinc-950 px-10 py-4 overflow-auto"

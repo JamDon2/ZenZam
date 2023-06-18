@@ -6,10 +6,12 @@ import { withDatabase } from "clients/mongoose";
 
 import User from "models/User";
 
-const userSchema = z.strictObject({
+import { groupSchema } from "../group/route";
+
+export const userSchema = z.strictObject({
     _id: z.string(),
     interests: z.string().array(),
-    groups: z.string().array(),
+    groups: groupSchema.array(),
 });
 
 const GETValidator = userSchema.nullable();
@@ -22,11 +24,20 @@ export const GET = withDatabase(
         z.object({ userId: z.string() }).strict(),
         GETValidator,
         async (_body, searchParams) => {
-            return await User.findOne({
+            const doc = await User.findOne({
                 _id: searchParams.userId,
             })
                 .select("-__v")
-                .lean();
+                .populate("groups");
+
+            if (!doc) return null;
+
+            const result = doc.toObject();
+
+            return {
+                ...result,
+                groups: JSON.parse(JSON.stringify(doc.groups)),
+            };
         }
     )
 );
