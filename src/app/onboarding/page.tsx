@@ -28,7 +28,7 @@ export default function OnboardingPage() {
                                 const response = (await (
                                     await fetch("/api/user", {
                                         method: "POST",
-                                        body: JSON.stringify({ interests }),
+                                        body: JSON.stringify(interests),
                                     })
                                 ).json()) as POST;
 

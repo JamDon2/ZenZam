@@ -49,13 +49,18 @@ export type POST = z.infer<typeof POSTValidator>;
 
 export const POST = withDatabase(
     zodWrapper(
-        userSchema.omit({ _id: true, groups: true }),
+        z.string().array(),
         z.object({}).strict(),
         POSTValidator,
         async (body) => {
             const uuid = v4();
 
-            await User.create({ _id: uuid, groups: [], ...body });
+            await User.create({
+                _id: uuid,
+                groups: [],
+                interests: body,
+                lookingForGroup: true,
+            });
 
             return uuid;
         }
