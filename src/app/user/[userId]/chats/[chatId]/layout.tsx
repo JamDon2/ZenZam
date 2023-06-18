@@ -13,7 +13,7 @@ export default async function ChatLayout({
     children: React.ReactNode;
     params: { chatId: string; userId: string };
 }) {
-    const result = (await (
+    const user = (await (
         await fetch(`${process.env.BASEURL}/api/user?userId=${params.userId}`, {
             cache: "no-store",
         })
@@ -21,11 +21,11 @@ export default async function ChatLayout({
 
     return (
         <>
-            {result ? (
+            {user ? (
                 <>
                     <Navbar
                         basePath={`/user/${params.userId}`}
-                        chatIds={result.groups}
+                        chatIds={user.groups}
                         selected={chatIds.indexOf(params.chatId)}
                     />
 
