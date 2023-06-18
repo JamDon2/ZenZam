@@ -12,6 +12,7 @@ export const userSchema = z.strictObject({
     _id: z.string(),
     interests: z.string().array(),
     groups: groupSchema.array(),
+    lookingForGroup: z.boolean(),
 });
 
 const GETValidator = userSchema.nullable();

@@ -8,6 +8,7 @@ export interface IUser {
     _id: string;
     interests: string[];
     groups: IGroup[];
+    lookingForGroup: boolean;
 }
 
 const UserSchema = new Schema<IUser>({
@@ -18,6 +19,11 @@ const UserSchema = new Schema<IUser>({
     interests: {
         type: [String],
         required: true,
+    },
+    lookingForGroup: {
+        type: Boolean,
+        required: true,
+        default: true,
     },
 });
 
