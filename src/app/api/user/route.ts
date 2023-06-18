@@ -12,7 +12,7 @@ const userSchema = z.strictObject({
     groups: z.string().array(),
 });
 
-const GETValidator = userSchema.array().nullable();
+const GETValidator = userSchema.nullable();
 
 export type GET = z.infer<typeof GETValidator>;
 
@@ -22,11 +22,11 @@ export const GET = withDatabase(
         z.object({ userId: z.string() }).strict(),
         GETValidator,
         async (_body, searchParams) => {
-            console.log("test");
-
             return await User.findOne({
                 _id: searchParams.userId,
-            });
+            })
+                .select("-__v")
+                .lean();
         }
     )
 );
